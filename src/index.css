@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-dark text-white;
+  }
+}
+
+@layer components {
+  .glass-panel {
+    @apply backdrop-blur-sm bg-white/5 border border-white/10 rounded-2xl;
+  }
+  
+  .nav-link {
+    @apply px-4 py-2 rounded-lg transition-all hover:text-primary relative;
+  }
+
+  .nav-link::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300;
+  }
+
+  .nav-link:hover::after,
+  .nav-link.active::after {
+    @apply w-full;
+  }
+
+  .btn-primary {
+    @apply px-6 py-3 bg-gradient-to-r from-primary to-secondary rounded-lg
+           hover:opacity-90 transition-all duration-300 font-medium
+           hover:scale-105 active:scale-95 hover:shadow-lg hover:shadow-primary/20;
+  }
+
+  .service-card {
+    @apply glass-panel p-6 transition-all duration-300 hover:scale-105 hover:shadow-lg
+           hover:shadow-primary/20;
+  }
+
+  .section-heading {
+    @apply text-4xl font-bold text-center relative pb-6 mb-12;
+  }
+
+  .social-link {
+    @apply text-gray-300 hover:text-primary transition-colors duration-300 
+           hover:scale-110 transform inline-flex items-center gap-2;
+  }
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
