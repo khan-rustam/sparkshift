@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ExternalLink } from 'lucide-react';
+import ScrollAnimation from './ScrollAnimation';
 
 const projects = [
   {
@@ -62,46 +63,70 @@ const Portfolio = () => {
     ? projects 
     : projects.filter(project => project.category === activeCategory);
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut"
+      }
+    }
+  };
+
   return (
     <section className="py-32 sm:py-24">
       <div className="container mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-12"
+        <ScrollAnimation>
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold mb-4">Portfolio</h2>
+            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+              Explore our portfolio of successful projects and digital transformations.
+            </p>
+          </div>
+        </ScrollAnimation>
+
+        <ScrollAnimation>
+          <div className="hidden sm:flex flex-wrap justify-center gap-4 mb-12">
+            {categories.map((category) => (
+              <button
+                key={category}
+                onClick={() => setActiveCategory(category)}
+                className={`px-6 py-2 rounded-full transition-all duration-300 ${
+                  activeCategory === category
+                    ? 'bg-primary text-white'
+                    : 'glass-panel hover:bg-primary/20'
+                }`}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
+        </ScrollAnimation>
+
+        <motion.div 
+          className="grid md:grid-cols-3 lg:grid-cols-4 gap-6"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ amount: 0.2 }}
         >
-          <h2 className="text-4xl font-bold mb-4">Portfolio</h2>
-          <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-            Explore our portfolio of successful projects and digital transformations.
-          </p>
-        </motion.div>
-
-        {/* Filter Buttons */}
-        <div className="hidden sm:flex flex-wrap justify-center gap-4 mb-12">
-          {categories.map((category) => (
-            <button
-              key={category}
-              onClick={() => setActiveCategory(category)}
-              className={`px-6 py-2 rounded-full transition-all duration-300 ${
-                activeCategory === category
-                  ? 'bg-primary text-white'
-                  : 'glass-panel hover:bg-primary/20'
-              }`}
-            >
-              {category}
-            </button>
-          ))}
-        </div>
-
-        {/* Project Grid */}
-        <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-6">
           {filteredProjects.map((project) => (
             <motion.div
               key={project.id}
               layout
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
+              variants={itemVariants}
               className="glass-panel group relative overflow-hidden rounded-xl"
             >
               <div className="aspect-video overflow-hidden">
@@ -122,7 +147,7 @@ const Portfolio = () => {
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

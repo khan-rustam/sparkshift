@@ -3,6 +3,7 @@ import { ArrowRight, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
 import Portfolio from "../components/Portfolio";
 import Testimonials from "../components/Testimonials";
+import ScrollAnimation from "../components/ScrollAnimation";
 
 const Home = () => {
   return (
@@ -61,10 +62,18 @@ const Home = () => {
       </section>
 
       {/* Portfolio Section */}
-      <Portfolio />
+      <ScrollAnimation>
+        <div className="">
+          <Portfolio />
+        </div>
+      </ScrollAnimation>
 
       {/* Testimonials Section */}
-      <Testimonials />
+      <ScrollAnimation>
+        <div className="">
+          <Testimonials />
+        </div>
+      </ScrollAnimation>
     </div>
   );
 };

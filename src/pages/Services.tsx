@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Code, Palette, Globe, Mail, Megaphone, Share2, Users, ArrowRight, Video, Camera } from 'lucide-react';
+import { Code, Palette, Globe, Mail, Megaphone, Share2, Users, ArrowRight, Video, Camera, Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 interface Service {
@@ -22,22 +22,28 @@ const services: Service[] = [
     features: ['React/Next.js', 'Full-stack Development', 'API Integration', 'Performance Optimization'],
   },
   {
-    icon: <Palette className="w-8 h-8 text-primary" />,
-    title: 'Graphic Design',
-    description: 'Stunning visuals that capture your brand essence and message.',
-    features: ['Brand Identity', 'UI/UX Design', 'Marketing Materials', 'Social Media Graphics'],
+    icon: <Megaphone className="w-8 h-8 text-primary" />,
+    title: 'Digital Marketing',
+    description: 'Comprehensive digital marketing solutions for business growth.',
+    features: ['SEO Optimization', 'Content Strategy', 'PPC Campaigns', 'Analytics'],
+  },
+  {
+    icon: <Star className="w-8 h-8 text-primary" />,
+    title: 'Influencer Marketing',
+    description: 'Strategic partnerships with influencers to amplify your brand reach.',
+    features: ['Influencer Outreach', 'Campaign Planning', 'Performance Tracking', 'ROI Analysis'],
+  },
+  {
+    icon: <Share2 className="w-8 h-8 text-primary" />,
+    title: 'Social Media Management',
+    description: 'Strategic social media presence to boost your brand engagement.',
+    features: ['Content Creation', 'Community Management', 'Paid Advertising', 'Analytics'],
   },
   {
     icon: <Video className="w-8 h-8 text-primary" />,
     title: 'Video Editing',
     description: 'Professional video editing services for all your content needs.',
     features: ['Content Creation', 'Motion Graphics', 'Color Grading', 'Sound Design'],
-  },
-  {
-    icon: <Camera className="w-8 h-8 text-primary" />,
-    title: 'Product Photography',
-    description: 'High-quality product photography that showcases your offerings.',
-    features: ['Studio Shoots', 'Location Shoots', 'Post-processing', 'E-commerce Ready'],
   },
   {
     icon: <Globe className="w-8 h-8 text-primary" />,
@@ -52,16 +58,16 @@ const services: Service[] = [
     features: ['Campaign Strategy', 'Template Design', 'Automation', 'Analytics & Reporting'],
   },
   {
-    icon: <Megaphone className="w-8 h-8 text-primary" />,
-    title: 'Digital Marketing',
-    description: 'Comprehensive digital marketing solutions for business growth.',
-    features: ['SEO Optimization', 'Content Strategy', 'PPC Campaigns', 'Analytics'],
+    icon: <Palette className="w-8 h-8 text-primary" />,
+    title: 'Graphic Design',
+    description: 'Stunning visuals that capture your brand essence and message.',
+    features: ['Brand Identity', 'UI/UX Design', 'Marketing Materials', 'Social Media Graphics'],
   },
   {
-    icon: <Share2 className="w-8 h-8 text-primary" />,
-    title: 'Social Media Management',
-    description: 'Strategic social media presence to boost your brand engagement.',
-    features: ['Content Creation', 'Community Management', 'Paid Advertising', 'Analytics'],
+    icon: <Camera className="w-8 h-8 text-primary" />,
+    title: 'Product Photography',
+    description: 'High-quality product photography that showcases your offerings.',
+    features: ['Studio Shoots', 'Location Shoots', 'Post-processing', 'E-commerce Ready'],
   },
   {
     icon: <Users className="w-8 h-8 text-primary" />,
