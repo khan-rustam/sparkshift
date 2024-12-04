@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ExternalLink } from 'lucide-react';
 
@@ -63,7 +63,7 @@ const Portfolio = () => {
     : projects.filter(project => project.category === activeCategory);
 
   return (
-    <section className="py-20">
+    <section className="py-32 sm:py-24">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -77,7 +77,7 @@ const Portfolio = () => {
         </motion.div>
 
         {/* Filter Buttons */}
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
+        <div className="hidden sm:flex flex-wrap justify-center gap-4 mb-12">
           {categories.map((category) => (
             <button
               key={category}
@@ -94,7 +94,7 @@ const Portfolio = () => {
         </div>
 
         {/* Project Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-6">
           {filteredProjects.map((project) => (
             <motion.div
               key={project.id}
@@ -111,13 +111,13 @@ const Portfolio = () => {
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
               </div>
-              <div className="p-6">
-                <span className="text-primary text-sm">{project.category}</span>
-                <h3 className="text-xl font-bold mt-2 mb-3">{project.title}</h3>
-                <p className="text-gray-300 mb-4">{project.description}</p>
+              <div className="p-4">
+                <span className="text-primary text-xs">{project.category}</span>
+                <h3 className="text-lg font-bold mt-1 mb-2">{project.title}</h3>
+                <p className="text-gray-300 text-sm mb-3">{project.description}</p>
                 <div className="flex items-center justify-between">
-                  <span className="text-primary font-medium">{project.results}</span>
-                  <ExternalLink className="w-5 h-5 text-gray-300 hover:text-primary transition-colors" />
+                  <span className="text-primary text-sm font-medium">{project.results}</span>
+                  <ExternalLink className="w-4 h-4 text-gray-300 hover:text-primary transition-colors" />
                 </div>
               </div>
             </motion.div>

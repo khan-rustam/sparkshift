@@ -1,6 +1,5 @@
-import React from 'react';
 import { motion } from 'framer-motion';
-import { Users, Target, Zap } from 'lucide-react';
+import {  Target, Zap } from 'lucide-react';
 
 const team = [
   {
@@ -49,7 +48,7 @@ const About = () => {
 
   return (
     <motion.div 
-      className="min-h-screen pt-24 pb-16"
+      className="min-h-screen pt-32 pb-16"
       initial="hidden"
       animate="visible"
       variants={containerVariants}

@@ -1,9 +1,20 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { Code, Palette, Globe, Mail, Megaphone, Share2, Users, ArrowRight, Video, Camera } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-const services = [
+interface Service {
+  icon: JSX.Element;
+  title: string;
+  description: string;
+  features: string[];
+}
+
+interface ServiceCardProps {
+  service: Service;
+  index: number;
+}
+
+const services: Service[] = [
   {
     icon: <Code className="w-8 h-8 text-primary" />,
     title: 'Web Development',
@@ -60,7 +71,7 @@ const services = [
   }
 ];
 
-const ServiceCard = ({ service, index }) => (
+const ServiceCard: React.FC<ServiceCardProps> = ({ service, index }) => (
   <motion.div
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
@@ -72,7 +83,7 @@ const ServiceCard = ({ service, index }) => (
     <h3 className="text-xl font-bold mb-2">{service.title}</h3>
     <p className="text-gray-300 mb-4">{service.description}</p>
     <ul className="space-y-2 mb-6">
-      {service.features.map((feature, i) => (
+      {service.features.map((feature: string, i: number) => (
         <li key={i} className="flex items-center text-gray-300">
           <ArrowRight className="w-4 h-4 mr-2 text-primary" />
           {feature}
@@ -91,7 +102,7 @@ const ServiceCard = ({ service, index }) => (
 
 const Services = () => {
   return (
-    <div className="min-h-screen pt-24 pb-16">
+    <div className="min-h-screen pt-32 pb-16">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
