@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
-import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin } from 'lucide-react';
+import { Instagram, Linkedin, Mail, Phone, MapPin } from 'lucide-react';
 import logo from '../assets/logo.png';
-const Footer = () => {
+
+const Footer: React.FC = () => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -84,11 +85,11 @@ const Footer = () => {
               </a>
               <div className="flex items-center space-x-3">
                 <Phone className="w-5 h-5 text-primary" />
-                <span className="text-gray-300">+1 (555) 123-4567</span>
+                <span className="text-gray-300">+91 9999999999</span>
               </div>
               <div className="flex items-center space-x-3">
                 <MapPin className="w-5 h-5 text-primary" />
-                <span className="text-gray-300">San Francisco, CA</span>
+                <span className="text-gray-300">Delhi, India</span>
               </div>
             </div>
           </div>
@@ -96,7 +97,7 @@ const Footer = () => {
 
         <div className="border-t border-white/10 mt-12 pt-8 text-center">
           <p className="text-gray-300">
-            © {new Date().getFullYear()} SPARKSHIFT. All rights reserved.
+            &copy; {new Date().getFullYear()} SPARKSHIFT. All rights reserved.
           </p>
         </div>
       </div>

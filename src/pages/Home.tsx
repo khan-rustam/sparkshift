@@ -1,9 +1,8 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { ArrowRight, Sparkles } from 'lucide-react';
-import { Link } from 'react-router-dom';
-import Portfolio from '../components/Portfolio';
-import Testimonials from '../components/Testimonials';
+import { motion } from "framer-motion";
+import { ArrowRight, Sparkles } from "lucide-react";
+import { Link } from "react-router-dom";
+import Portfolio from "../components/Portfolio";
+import Testimonials from "../components/Testimonials";
 
 const Home = () => {
   return (
@@ -11,7 +10,6 @@ const Home = () => {
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center">
         <div className="absolute inset-0 bg-gradient-radial from-primary/20 via-dark to-dark z-0" />
-        
         {/* Floating Elements */}
         <motion.div
           animate={{
@@ -21,7 +19,7 @@ const Home = () => {
           transition={{
             duration: 6,
             repeat: Infinity,
-            ease: "easeInOut"
+            ease: "easeInOut",
           }}
           className="absolute top-1/4 right-1/4 glass-panel p-8"
         >
@@ -44,11 +42,17 @@ const Home = () => {
               that drive growth and innovation.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Link to="/contact" className="btn-primary inline-flex items-center">
+              <Link
+                to="/contact"
+                className="btn-primary inline-flex items-center"
+              >
                 Start Your Journey
                 <ArrowRight className="ml-2" />
               </Link>
-              <Link to="/services" className="glass-panel px-6 py-3 text-center hover:bg-white/20 transition-all">
+              <Link
+                to="/services"
+                className="glass-panel px-6 py-3 text-center hover:bg-white/20 transition-all"
+              >
                 Explore Services
               </Link>
             </div>
