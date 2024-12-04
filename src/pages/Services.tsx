@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Code, Palette, Globe, Mail, Megaphone, Share2, Users, ArrowRight, Video, Camera, Star } from 'lucide-react';
+import { Code, Palette, Globe, Mail, Megaphone, Share2, Users, ArrowRight, Video, Camera, TrendingUp } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 interface Service {
@@ -16,40 +16,40 @@ interface ServiceCardProps {
 
 const services: Service[] = [
   {
+    icon: <Megaphone className="w-8 h-8 text-primary" />,
+    title: 'Digital Marketing',
+    description: 'Comprehensive digital marketing solutions for explosive business growth.',
+    features: ['SEO Optimization', 'Content Strategy', 'PPC Campaigns', 'Performance Analytics'],
+  },
+  {
+    icon: <Share2 className="w-8 h-8 text-primary" />,
+    title: 'Social Media Management',
+    description: 'Strategic social media presence to boost your brand engagement and reach.',
+    features: ['Content Creation', 'Community Management', 'Paid Advertising', 'Growth Strategy'],
+  },
+  {
+    icon: <TrendingUp className="w-8 h-8 text-primary" />,
+    title: 'Influencer Marketing',
+    description: 'Connect with influential voices to amplify your brand message.',
+    features: ['Influencer Outreach', 'Campaign Management', 'Performance Tracking', 'ROI Analysis'],
+  },
+  {
     icon: <Code className="w-8 h-8 text-primary" />,
     title: 'Web Development',
     description: 'Custom web applications built with modern technologies and best practices.',
     features: ['React/Next.js', 'Full-stack Development', 'API Integration', 'Performance Optimization'],
   },
   {
-    icon: <Megaphone className="w-8 h-8 text-primary" />,
-    title: 'Digital Marketing',
-    description: 'Comprehensive digital marketing solutions for business growth.',
-    features: ['SEO Optimization', 'Content Strategy', 'PPC Campaigns', 'Analytics'],
-  },
-  {
-    icon: <Star className="w-8 h-8 text-primary" />,
-    title: 'Influencer Marketing',
-    description: 'Strategic partnerships with influencers to amplify your brand reach.',
-    features: ['Influencer Outreach', 'Campaign Planning', 'Performance Tracking', 'ROI Analysis'],
-  },
-  {
-    icon: <Share2 className="w-8 h-8 text-primary" />,
-    title: 'Social Media Management',
-    description: 'Strategic social media presence to boost your brand engagement.',
-    features: ['Content Creation', 'Community Management', 'Paid Advertising', 'Analytics'],
+    icon: <Palette className="w-8 h-8 text-primary" />,
+    title: 'UI/UX & Graphic Design',
+    description: 'Stunning visuals and user experiences that capture your brand essence.',
+    features: ['Brand Identity', 'UI/UX Design', 'Marketing Materials', 'Social Media Graphics'],
   },
   {
     icon: <Video className="w-8 h-8 text-primary" />,
     title: 'Video Editing',
-    description: 'Professional video editing services for all your content needs.',
+    description: 'Professional video editing services for engaging content creation.',
     features: ['Content Creation', 'Motion Graphics', 'Color Grading', 'Sound Design'],
-  },
-  {
-    icon: <Globe className="w-8 h-8 text-primary" />,
-    title: 'WordPress Development',
-    description: 'Professional WordPress solutions for your business needs.',
-    features: ['Custom Themes', 'Plugin Development', 'E-commerce', 'Performance Tuning'],
   },
   {
     icon: <Mail className="w-8 h-8 text-primary" />,
@@ -58,10 +58,10 @@ const services: Service[] = [
     features: ['Campaign Strategy', 'Template Design', 'Automation', 'Analytics & Reporting'],
   },
   {
-    icon: <Palette className="w-8 h-8 text-primary" />,
-    title: 'Graphic Design',
-    description: 'Stunning visuals that capture your brand essence and message.',
-    features: ['Brand Identity', 'UI/UX Design', 'Marketing Materials', 'Social Media Graphics'],
+    icon: <Globe className="w-8 h-8 text-primary" />,
+    title: 'WordPress Development',
+    description: 'Professional WordPress solutions for your business needs.',
+    features: ['Custom Themes', 'Plugin Development', 'E-commerce', 'Performance Tuning'],
   },
   {
     icon: <Camera className="w-8 h-8 text-primary" />,

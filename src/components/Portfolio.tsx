@@ -64,9 +64,8 @@ const Portfolio = () => {
     : projects.filter(project => project.category === activeCategory);
 
   const containerVariants = {
-    hidden: { opacity: 0 },
+    hidden: {},
     visible: {
-      opacity: 1,
       transition: {
         staggerChildren: 0.1
       }
@@ -79,8 +78,7 @@ const Portfolio = () => {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.5,
-        ease: "easeOut"
+        duration: 0.5
       }
     }
   };
@@ -97,6 +95,7 @@ const Portfolio = () => {
           </div>
         </ScrollAnimation>
 
+        {/* Filter Buttons */}
         <ScrollAnimation>
           <div className="hidden sm:flex flex-wrap justify-center gap-4 mb-12">
             {categories.map((category) => (
@@ -115,12 +114,13 @@ const Portfolio = () => {
           </div>
         </ScrollAnimation>
 
+        {/* Project Grid */}
         <motion.div 
           className="grid md:grid-cols-3 lg:grid-cols-4 gap-6"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ amount: 0.2 }}
+          viewport={{ once: true, margin: "-100px" }}
         >
           {filteredProjects.map((project) => (
             <motion.div

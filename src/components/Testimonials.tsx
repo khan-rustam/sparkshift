@@ -31,9 +31,8 @@ const testimonials = [
 
 const Testimonials = () => {
   const containerVariants = {
-    hidden: { opacity: 0 },
+    hidden: {},
     visible: {
-      opacity: 1,
       transition: {
         staggerChildren: 0.2
       }
@@ -93,7 +92,7 @@ const Testimonials = () => {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ amount: 0.2 }}
+          viewport={{ once: true, margin: "-100px" }}
         >
           {testimonials.map((testimonial) => (
             <motion.div
