@@ -5,26 +5,30 @@ const team = [
   {
     image:
       "https://media.licdn.com/dms/image/v2/D5603AQHe8xNb4nOwsg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1721389008436?e=1738800000&v=beta&t=5iTmN-vD191fxnahaOFrPjtsS5-8eBILaYpXtQpvgjM",
-    name: "Shazia ",
+    name: "Shazia",
     role: "Founder & CEO",
+    linkedin: "https://www.linkedin.com/in/shazia-praveen/",
   },
   {
     image:
       "https://media.licdn.com/dms/image/v2/D5603AQEFGuEQur0ZWg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1719334653333?e=1738800000&v=beta&t=3Ja9ePNn2P64tqWC1-nisqNyPL7XbsGL_A6e0DlVuHo",
     name: "Pradeependra",
     role: "Technical Director",
+    linkedin: "https://www.linkedin.com/in/pradeependra-pratap/",
   },
   {
     image:
       "https://media.licdn.com/dms/image/v2/D5603AQH3dthDb-GH_A/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1731403670415?e=1738800000&v=beta&t=UDj0AlskpQSeuQXgI-Ln7657AreJwIIjpYTCefQX3gM",
     name: "Ali Asgar",
     role: "Creative Director",
+    linkedin: "https://www.linkedin.com/in/ali-asgar-ui2002",
   },
   {
     image:
       "https://media.licdn.com/dms/image/v2/D5603AQGskB3_FihE1w/profile-displayphoto-shrink_400_400/B56ZPFoeQyHoAg-/0/1734187542529?e=1739404800&v=beta&t=bpLAnPIMciWRPGT84689c7365VUsD7jAvHpNSrtI4ro",
     name: "Rustam",
     role: "Development Director",
+    linkedin: "https://www.linkedin.com/in/khan-rustam/",
   },
 ];
 
@@ -106,11 +110,14 @@ const About = () => {
 
         <div className="grid md:grid-cols-4 gap-8">
           {team.map((member, index) => (
-            <motion.div
+            <motion.a
               key={index}
+              href={member.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
               variants={itemVariants}
               whileHover={{ scale: 1.05 }}
-              className="glass-panel p-6 text-center"
+              className="glass-panel p-6 text-center relative group"
             >
               <motion.img
                 initial={{ scale: 0.8 }}
@@ -121,8 +128,8 @@ const About = () => {
                 className="w-32 h-32 rounded-full mx-auto mb-4 object-cover"
               />
               <h3 className="text-xl font-bold mb-1">{member.name}</h3>
-              <p className="text-primary">{member.role}</p>
-            </motion.div>
+              <p className="text-primary mb-4">{member.role}</p>
+            </motion.a>
           ))}
         </div>
       </div>
