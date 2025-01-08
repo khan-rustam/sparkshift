@@ -6,7 +6,7 @@ const testimonials = [
   {
     id: 1,
     name: "Nivedita Bhasin",
-    role: "Client",
+    role: "Section Membership Chairman",
     image: "https://firebasestorage.googleapis.com/v0/b/fir-india-77ae4.appspot.com/o/1726162733435Nivedita%20Bhasin.jpg?alt=media&token=6d5690aa-448f-49f6-98ed-d6a1905d046c",
     content: "Rustam and his team worked very hard and helped us make a wonderful website within the timeframe and to our specific requirements. A job done well.",
     rating: 5
@@ -14,7 +14,7 @@ const testimonials = [
   {
     id: 2,
     name: "Bobby Choudhury",
-    role: "Client",
+    role: "Treasurer",
     image: "https://firebasestorage.googleapis.com/v0/b/fir-india-77ae4.appspot.com/o/1726159477018BOBBY%20CHOUDHURY.jpg?alt=media&token=9996b3c7-3984-444b-a099-2014ccf0e415",
     content: "Excellent service and great attention to detail. The team provided clear guidance on file formats and delivered outstanding results.",
     rating: 5
