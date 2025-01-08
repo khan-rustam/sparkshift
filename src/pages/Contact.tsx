@@ -288,7 +288,7 @@ const Contact = () => {
                   <div>
                     <h3 className="font-medium mb-1">Visit Us</h3>
                     <p className="text-gray-300">
-                    Remote Business.
+                    Delhi INDIA
                     </p>
                   </div>
                 </div>
