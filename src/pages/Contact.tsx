@@ -248,7 +248,7 @@ const Contact = () => {
           </motion.div>
 
           {/* Contact Information */}
-          <motion.div
+         <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             className="space-y-8"
@@ -277,7 +277,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="font-medium mb-1">Call Us</h3>
-                    <p className="text-gray-300">+1 (555) 123-4567</p>
+                    <p className="text-gray-300">+91 90790-57892</p>
                   </div>
                 </div>
 
@@ -288,11 +288,7 @@ const Contact = () => {
                   <div>
                     <h3 className="font-medium mb-1">Visit Us</h3>
                     <p className="text-gray-300">
-                      123 Innovation Street
-                      <br />
-                      Tech District
-                      <br />
-                      San Francisco, CA 94105
+                    Remote Business.
                     </p>
                   </div>
                 </div>
