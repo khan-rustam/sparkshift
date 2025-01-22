@@ -4,10 +4,17 @@ import { Target, Zap } from "lucide-react";
 const team = [
   {
     image:
-      "https://media.licdn.com/dms/image/v2/D5603AQHe8xNb4nOwsg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1721389008436?e=1738800000&v=beta&t=5iTmN-vD191fxnahaOFrPjtsS5-8eBILaYpXtQpvgjM",
+      "https://media.licdn.com/dms/image/v2/D5603AQF0Tlk4pEKB6Q/profile-displayphoto-shrink_800_800/B56ZRvZcVnH0Ac-/0/1737035730026?e=1743033600&v=beta&t=1f27wk9TSlgzhntbYCFs9xr1A7Hdt3qMAq2vgmApcN8",
     name: "Shazia",
     role: "Founder & CEO",
     linkedin: "https://www.linkedin.com/in/shazia-praveen/",
+  },
+   {
+    image:
+      "https://media.licdn.com/dms/image/v2/D5603AQGskB3_FihE1w/profile-displayphoto-shrink_400_400/B56ZPFoeQyHoAg-/0/1734187542529?e=1739404800&v=beta&t=bpLAnPIMciWRPGT84689c7365VUsD7jAvHpNSrtI4ro",
+    name: "Rustam",
+    role: "Development Director",
+    linkedin: "https://www.linkedin.com/in/khan-rustam/",
   },
   {
     image:
@@ -18,18 +25,12 @@ const team = [
   },
   {
     image:
-      "https://media.licdn.com/dms/image/v2/D5603AQH3dthDb-GH_A/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1731403670415?e=1738800000&v=beta&t=UDj0AlskpQSeuQXgI-Ln7657AreJwIIjpYTCefQX3gM",
+      "https://media.licdn.com/dms/image/v2/D5603AQHMyfdmq3Qi1g/profile-displayphoto-shrink_800_800/B56ZRKM7ojGQAc-/0/1736411692083?e=1743033600&v=beta&t=cj0JwbQjV8Vw5xmyZ0BgOXgKXOxYuRO9XI43lpISsec",
     name: "Ali Asgar",
     role: "Creative Director",
     linkedin: "https://www.linkedin.com/in/ali-asgar-ui2002",
   },
-  {
-    image:
-      "https://media.licdn.com/dms/image/v2/D5603AQGskB3_FihE1w/profile-displayphoto-shrink_400_400/B56ZPFoeQyHoAg-/0/1734187542529?e=1739404800&v=beta&t=bpLAnPIMciWRPGT84689c7365VUsD7jAvHpNSrtI4ro",
-    name: "Rustam",
-    role: "Development Director",
-    linkedin: "https://www.linkedin.com/in/khan-rustam/",
-  },
+ 
 ];
 
 const About = () => {
