@@ -11,14 +11,14 @@ const team = [
   },
    {
     image:
-      "https://media.licdn.com/dms/image/v2/D5603AQGskB3_FihE1w/profile-displayphoto-shrink_400_400/B56ZPFoeQyHoAg-/0/1734187542529?e=1739404800&v=beta&t=bpLAnPIMciWRPGT84689c7365VUsD7jAvHpNSrtI4ro",
+      "https://media.licdn.com/dms/image/v2/D5603AQGskB3_FihE1w/profile-displayphoto-shrink_400_400/B56ZPFoeQyHoAg-/0/1734187542529?e=1745452800&v=beta&t=HG53MwnHdYsyJX7oPNBCY12CLNYRNTSG_HHeouqA-CY",
     name: "Rustam",
     role: "Development Director",
     linkedin: "https://www.linkedin.com/in/khan-rustam/",
   },
   {
     image:
-      "https://media.licdn.com/dms/image/v2/D5603AQEFGuEQur0ZWg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1719334653333?e=1738800000&v=beta&t=3Ja9ePNn2P64tqWC1-nisqNyPL7XbsGL_A6e0DlVuHo",
+      "https://media.licdn.com/dms/image/v2/D5603AQEFGuEQur0ZWg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1719334653333?e=1745452800&v=beta&t=RxNe0E6bJJA2dYxWAhdzb0zKLDmLAHar2oKkgKVVaJQ",
     name: "Pradeependra",
     role: "Technical Director",
     linkedin: "https://www.linkedin.com/in/pradeependra-pratap/",
