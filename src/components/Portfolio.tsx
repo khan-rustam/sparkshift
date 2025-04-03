@@ -54,7 +54,7 @@ const projects = [
   }
 ];
 
-const categories = ["All", "Web Development", "Graphic Design", "Digital Marketing", "Product Photography", "Video Editing", "Email Marketing"];
+const categories = ["All", "Web Development", "Graphic Design", "Digital Marketing", "Product Photography"];
 
 const Portfolio = () => {
   const [activeCategory, setActiveCategory] = useState("All");

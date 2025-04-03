@@ -2,12 +2,15 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useSelector } from 'react-redux';
+import { RootState } from '../store/store';
 import logo from '../assets/logo.png';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+  const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,6 +34,16 @@ const Navbar = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const ActionButton = () => (
+    <Link 
+      to={isAuthenticated ? "/admin" : "/contact"}
+      onClick={scrollToTop}
+      className="btn-primary"
+    >
+      {isAuthenticated ? "Dashboard" : "Hire Us"}
+    </Link>
+  );
+
   return (
     <motion.nav
       initial={{ y: -100 }}
@@ -41,7 +54,7 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between">
-        <Link 
+          <Link 
             to="/" 
             // className="flex items-center space-x-2 text-2xl font-bold text-white hover:text-primary transition-colors"
           >
@@ -56,13 +69,7 @@ const Navbar = () => {
             <Link to="/portfolio" onClick={scrollToTop} className={`nav-link ${isActive('/portfolio') ? 'text-primary after:w-full' : ''}`}>Portfolio</Link>
             <Link to="/about" onClick={scrollToTop} className={`nav-link ${isActive('/about') ? 'text-primary after:w-full' : ''}`}>About</Link>
             <Link to="/contact" onClick={scrollToTop} className={`nav-link ${isActive('/contact') ? 'text-primary after:w-full' : ''}`}>Contact</Link>
-            <Link 
-              to="/contact" 
-              onClick={scrollToTop}
-              className="btn-primary"
-            >
-              Hire Us
-            </Link>
+            <ActionButton />
           </div>
 
           {/* Mobile Menu Button */}
@@ -91,9 +98,7 @@ const Navbar = () => {
                 <Link to="/portfolio" onClick={scrollToTop} className={`nav-link ${isActive('/portfolio') ? 'text-primary' : ''}`}>Portfolio</Link>
                 <Link to="/about" onClick={scrollToTop} className={`nav-link ${isActive('/about') ? 'text-primary' : ''}`}>About</Link>
                 <Link to="/contact" onClick={scrollToTop} className={`nav-link ${isActive('/contact') ? 'text-primary' : ''}`}>Contact</Link>
-                <Link to="/contact" onClick={scrollToTop} className="btn-primary text-center">
-                  Hire Us
-                </Link>
+                <ActionButton />
               </div>
             </motion.div>
           )}

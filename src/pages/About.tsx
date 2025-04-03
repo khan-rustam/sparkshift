@@ -11,7 +11,7 @@ const team = [
   },
    {
     image:
-      "https://media.licdn.com/dms/image/v2/D5603AQGskB3_FihE1w/profile-displayphoto-shrink_400_400/B56ZPFoeQyHoAg-/0/1734187542529?e=1739404800&v=beta&t=bpLAnPIMciWRPGT84689c7365VUsD7jAvHpNSrtI4ro",
+      "https://media.licdn.com/dms/image/v2/D5603AQHnkQjGYwZUnQ/profile-displayphoto-shrink_800_800/B56ZXfzwBRGsAg-/0/1743216641652?e=1748476800&v=beta&t=1wSIBjha2J9cWXj6zM_56Ru9VvxbYIKnwjB44FmE1Zg",
     name: "Rustam",
     role: "Development Director",
     linkedin: "https://www.linkedin.com/in/khan-rustam/",
