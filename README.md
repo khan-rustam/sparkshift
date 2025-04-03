@@ -1,7 +1,7 @@
 # SparkShift Frontend 🎨
 
 <div align="center">
-  <img src="public/logo.png" alt="SparkShift Frontend Logo" width="150"/>
+  <img src="https://sparkshift.digital/assets/logo-Dop5KKen.png" alt="SparkShift Frontend Logo" width="150"/>
   
   [![React](https://img.shields.io/badge/React-18.3.1-blue.svg)](https://reactjs.org/)
   [![TypeScript](https://img.shields.io/badge/TypeScript-5.5.3-3178C6.svg)](https://www.typescriptlang.org/)
