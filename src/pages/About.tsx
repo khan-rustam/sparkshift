@@ -1,31 +1,35 @@
 import { motion } from "framer-motion";
 import { Target, Zap } from "lucide-react";
+import Shazia from "../assets/team/shazia.jpg";
+import Rustam from "../assets/team/rustam.jpg";
+import Pradeependra from "../assets/team/PP.jpg";
+import AliAsgar from "../assets/team/ali.jpg";
 
 const team = [
   {
     image:
-      "https://media.licdn.com/dms/image/v2/D5603AQF0Tlk4pEKB6Q/profile-displayphoto-shrink_800_800/B56ZRvZcVnH0Ac-/0/1737035730026?e=1743033600&v=beta&t=1f27wk9TSlgzhntbYCFs9xr1A7Hdt3qMAq2vgmApcN8",
+      Shazia,
     name: "Shazia",
     role: "Founder & CEO",
     linkedin: "https://www.linkedin.com/in/shazia-praveen/",
   },
    {
     image:
-      "https://media.licdn.com/dms/image/v2/D5603AQHnkQjGYwZUnQ/profile-displayphoto-shrink_800_800/B56ZXfzwBRGsAg-/0/1743216641652?e=1748476800&v=beta&t=1wSIBjha2J9cWXj6zM_56Ru9VvxbYIKnwjB44FmE1Zg",
+      Rustam,
     name: "Rustam",
     role: "Development Director",
     linkedin: "https://www.linkedin.com/in/khan-rustam/",
   },
   {
     image:
-      "https://media.licdn.com/dms/image/v2/D5603AQEFGuEQur0ZWg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1719334653333?e=1738800000&v=beta&t=3Ja9ePNn2P64tqWC1-nisqNyPL7XbsGL_A6e0DlVuHo",
+      Pradeependra,
     name: "Pradeependra",
     role: "Technical Director",
     linkedin: "https://www.linkedin.com/in/pradeependra-pratap/",
   },
   {
     image:
-      "https://media.licdn.com/dms/image/v2/D5603AQHMyfdmq3Qi1g/profile-displayphoto-shrink_800_800/B56ZRKM7ojGQAc-/0/1736411692083?e=1743033600&v=beta&t=cj0JwbQjV8Vw5xmyZ0BgOXgKXOxYuRO9XI43lpISsec",
+      AliAsgar,
     name: "Ali Asgar",
     role: "Creative Director",
     linkedin: "https://www.linkedin.com/in/ali-asgar-ui2002",
