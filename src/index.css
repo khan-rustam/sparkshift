@@ -10,6 +10,17 @@
   body {
     @apply bg-dark text-white;
   }
+
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  * {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
 }
 
 @layer components {
@@ -50,13 +61,4 @@
     @apply text-gray-300 hover:text-primary transition-colors duration-300 
            hover:scale-110 transform inline-flex items-center gap-2;
   }
-}
-
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
-}
-
-.scrollbar-hide {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
 }

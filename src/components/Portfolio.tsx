@@ -1,63 +1,53 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ExternalLink } from 'lucide-react';
 import ScrollAnimation from './ScrollAnimation';
+import Loading from './Loading';
 
-const projects = [
-  {
-    id: 1,
-    title: "E-commerce Platform",
-    category: "Web Development",
-    image: "https://images.unsplash.com/photo-1661956602116-aa6865609028?auto=format&fit=crop&q=80&w=800&h=600",
-    description: "Modern e-commerce solution with seamless payment integration",
-    results: "150% increase in online sales"
-  },
-  {
-    id: 2,
-    title: "Brand Identity Design",
-    category: "Graphic Design",
-    image: "https://images.unsplash.com/photo-1634942537034-2531766767d1?auto=format&fit=crop&q=80&w=800&h=600",
-    description: "Complete brand identity redesign for tech startup",
-    results: "200% increase in brand recognition"
-  },
-  {
-    id: 3,
-    title: "Social Media Campaign",
-    category: "Digital Marketing",
-    image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&q=80&w=800&h=600",
-    description: "Integrated social media marketing campaign",
-    results: "300% engagement increase"
-  },
-  {
-    id: 4,
-    title: "Product Showcase",
-    category: "Product Photography",
-    image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&q=80&w=800&h=600",
-    description: "Professional product photography for e-commerce",
-    results: "40% increase in product sales"
-  },
-  {
-    id: 5,
-    title: "Corporate Video",
-    category: "Video Editing",
-    image: "https://images.unsplash.com/photo-1536240478700-b869070f9279?auto=format&fit=crop&q=80&w=800&h=600",
-    description: "Corporate brand video with motion graphics",
-    results: "85% positive feedback"
-  },
-  {
-    id: 6,
-    title: "Email Campaign",
-    category: "Email Marketing",
-    image: "https://images.unsplash.com/photo-1557200134-90327ee9fafa?auto=format&fit=crop&q=80&w=800&h=600",
-    description: "Automated email marketing campaign",
-    results: "250% increase in leads"
-  }
-];
-
-const categories = ["All", "Web Development", "Graphic Design", "Digital Marketing", "Product Photography"];
+interface Project {
+  _id: string;
+  projectName: string;
+  category: string;
+  imageUrl: string;
+  description: string;
+  projectLink: string;
+  createdAt: string;
+}
 
 const Portfolio = () => {
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [activeCategory, setActiveCategory] = useState("All");
+  const [categories, setCategories] = useState<string[]>(["All"]);
+
+  // Fetch portfolio data from API
+  useEffect(() => {
+    const fetchPortfolio = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/portfolio`);
+        
+        if (!response.ok) {
+          throw new Error('Failed to fetch portfolio data');
+        }
+        
+        const data = await response.json();
+        setProjects(data);
+        
+        // Extract unique categories
+        const uniqueCategories = [...new Set(data.map((project: Project) => project.category))];
+        setCategories(["All", ...uniqueCategories as string[]]);
+      } catch (err: unknown) {
+        console.error('Error fetching portfolio:', err);
+        setError(err instanceof Error ? err.message : 'Failed to load portfolio projects');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPortfolio();
+  }, []);
 
   const filteredProjects = activeCategory === "All" 
     ? projects 
@@ -82,6 +72,27 @@ const Portfolio = () => {
       }
     }
   };
+
+  if (loading) {
+    return (
+      <section className="py-32 sm:py-24">
+        <div className="container mx-auto px-4 flex justify-center items-center min-h-[50vh]">
+          <Loading />
+        </div>
+      </section>
+    );
+  }
+
+  if (error) {
+    return (
+      <section className="py-32 sm:py-24">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-4xl font-bold mb-4">Portfolio</h2>
+          <p className="text-xl text-red-400">{error}</p>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="py-32 sm:py-24">
@@ -115,39 +126,58 @@ const Portfolio = () => {
         </ScrollAnimation>
 
         {/* Project Grid */}
-        <motion.div 
-          className="grid md:grid-cols-3 lg:grid-cols-4 gap-6"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-        >
-          {filteredProjects.map((project) => (
-            <motion.div
-              key={project.id}
-              layout
-              variants={itemVariants}
-              className="glass-panel group relative overflow-hidden rounded-xl"
-            >
-              <div className="aspect-video overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-              </div>
-              <div className="p-4">
-                <span className="text-primary text-xs">{project.category}</span>
-                <h3 className="text-lg font-bold mt-1 mb-2">{project.title}</h3>
-                <p className="text-gray-300 text-sm mb-3">{project.description}</p>
-                <div className="flex items-center justify-between">
-                  <span className="text-primary text-sm font-medium">{project.results}</span>
-                  <ExternalLink className="w-4 h-4 text-gray-300 hover:text-primary transition-colors" />
+        {filteredProjects.length === 0 ? (
+          <div className="text-center text-gray-300 py-10">
+            No projects found in this category.
+          </div>
+        ) : (
+          <motion.div 
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+          >
+            {filteredProjects.map((project) => (
+              <motion.div
+                key={project._id}
+                layout
+                variants={itemVariants}
+                className="glass-panel group flex flex-col h-full relative overflow-hidden rounded-xl"
+              >
+                <div className="aspect-video w-full overflow-hidden">
+                  <img
+                    src={project.imageUrl}
+                    alt={project.projectName}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
                 </div>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
+                <div className="p-4 flex flex-col flex-grow">
+                  <div className="mb-2">
+                    <span className="text-primary text-xs uppercase font-medium tracking-wider">{project.category}</span>
+                  </div>
+                  <h3 className="text-lg font-bold mb-2 line-clamp-2 h-14">{project.projectName}</h3>
+                  <p className="text-gray-300 text-sm mb-3 line-clamp-2 flex-grow">{project.description}</p>
+                  <div className="flex items-center justify-between mt-auto pt-2 border-t border-white/10">
+                    <span className="text-primary text-sm font-medium">
+                     <a href={project.projectLink} target="_blank" rel="noopener noreferrer">
+                      View
+                     </a>
+                    </span>
+                    <a 
+                      href={project.projectLink} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-gray-300 hover:text-primary transition-colors"
+                    >
+                      <ExternalLink className="w-4 h-4" />
+                    </a>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        )}
       </div>
     </section>
   );
