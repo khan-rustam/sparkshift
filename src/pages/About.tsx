@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Target, Zap } from "lucide-react";
-import Shazia from "../assets/team/shazia.jpg";
+import Shazia from "../assets/team/Shazia.jpg";
 import Rustam from "../assets/team/rustam.jpg";
 import Pradeependra from "../assets/team/PP.jpg";
 import AliAsgar from "../assets/team/ali.jpg";
