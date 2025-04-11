@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "react-hot-toast";
 import { logout } from "../store/slices/authSlice";
 import { FiPlus, FiLogOut, FiX, FiSend, FiUpload, FiTrash2 } from "react-icons/fi";
+import { authAPI } from "../services/api";
 
 interface PortfolioItem {
   _id: string;
@@ -15,11 +16,23 @@ interface PortfolioItem {
   imageUrl: string;
 }
 
+interface RootState {
+  auth: {
+    user: {
+      id: string;
+      email: string;
+      role: string;
+    } | null;
+    isAuthenticated: boolean;
+  };
+}
+
 const categories = ["Web Development", "Graphic Design", "Digital Marketing", "Product Photography"];
 
 const Admin = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { user, isAuthenticated } = useSelector((state: RootState) => state.auth);
   const [portfolioItems, setPortfolioItems] = useState<PortfolioItem[]>([]);
   const [showModal, setShowModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -36,8 +49,32 @@ const Admin = () => {
   });
 
   useEffect(() => {
+    // First check if the user is authenticated
+    if (!isAuthenticated) {
+      toast.error("You must log in to access this page", { id: "auth-access" });
+      navigate('/login');
+      return;
+    }
+    
+    // Check for admin permissions
+    const isAdmin = user?.role === "admin" && authAPI.isAdmin();
+    
+    if (!isAdmin) {
+      // Only show one toast message for any authentication/permission issue
+      toast.error("Access denied. You don't have administrator permissions.", { id: "auth-access" });
+      
+      // If there's an inconsistency between Redux and localStorage, logout
+      if (user?.role !== "admin" || !authAPI.isAdmin()) {
+        dispatch(logout());
+      }
+      
+      navigate('/');
+      return;
+    }
+    
+    // If we get here, user is authenticated and has admin permissions
     fetchPortfolioItems();
-  }, []);
+  }, [isAuthenticated, user, navigate, dispatch]);
 
   const fetchPortfolioItems = async () => {
     try {

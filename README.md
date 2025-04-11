@@ -21,11 +21,8 @@ Frontend/
 │   ├── components/     # Reusable UI components
 │   ├── pages/         # Page components
 │   ├── store/         # Redux store configuration
-│   ├── hooks/         # Custom React hooks
-│   ├── utils/         # Utility functions
-│   ├── types/         # TypeScript type definitions
+│   ├── services/      # API services and data fetching
 │   ├── assets/        # Static assets (images, fonts)
-│   ├── styles/        # Global styles
 │   ├── App.tsx        # Main App component
 │   └── main.tsx       # Application entry point
 ├── public/            # Public static assets
@@ -40,25 +37,28 @@ Frontend/
 - 🔄 State management with Redux Toolkit
 - 🔒 Secure authentication flow
 - 📊 Real-time data updates
-- 🌐 Client-side routing
-- 🔍 Type-safe development
+- 🌐 Client-side routing with React Router
+- 🔍 Type-safe development with TypeScript
 
 ## Tech Stack
 
-- **Framework**: React 18
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS
+- **Framework**: React 18.3.1
+- **Language**: TypeScript 5.5.3
+- **Styling**: Tailwind CSS 3.4.1
 - **State Management**: Redux Toolkit
 - **Routing**: React Router DOM
 - **Animations**: Framer Motion
-- **Build Tool**: Vite
-- **Package Manager**: npm/yarn
+- **Toast Notifications**: React Hot Toast
+- **Icons**: Lucide React, React Icons
+- **Intersection Observer**: React Intersection Observer
+- **Build Tool**: Vite 5.4.2
+- **Package Manager**: npm
 
 ## Getting Started
 
 ### Prerequisites
-- Node.js (v14 or higher)
-- npm or yarn
+- Node.js (v16 or higher)
+- npm
 
 ### Installation
 
@@ -105,24 +105,22 @@ npm run preview
 - `npm run build` - Build for production
 - `npm run preview` - Preview production build
 - `npm run lint` - Run ESLint
-- `npm run type-check` - Run TypeScript type checking
+- `npm run server` - Run server
 
 ## Component Guidelines
 
 1. Use functional components with TypeScript
 2. Implement proper prop types
-3. Follow the atomic design pattern
-4. Use Tailwind CSS for styling
-5. Implement responsive design
-6. Add proper documentation
+3. Use Tailwind CSS for styling
+4. Implement responsive design
+5. Add proper documentation
 
 ## State Management
 
 The application uses Redux Toolkit for state management:
 - Store configuration in `src/store`
-- Slices for different features
-- Async thunks for API calls
-- Selectors for data access
+- Redux Persist for state persistence
+- Async API calls through services
 
 ## Routing
 

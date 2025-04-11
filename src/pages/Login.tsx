@@ -10,7 +10,7 @@ import { FiEye, FiEyeOff } from 'react-icons/fi';
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { isLoading } = useAppSelector((state) => state.auth);
+  const { isLoading, isAuthenticated, user } = useAppSelector((state) => state.auth);
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -22,6 +22,17 @@ const Login = () => {
   useEffect(() => {
     dispatch(setLoading(false));
   }, [dispatch]);
+
+  // Redirect if already logged in
+  useEffect(() => {
+    if (isAuthenticated) {
+      if (user?.role === 'admin') {
+        navigate('/admin');
+      } else {
+        navigate('/');
+      }
+    }
+  }, [isAuthenticated, user, navigate]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -43,7 +54,13 @@ const Login = () => {
       const response = await authAPI.login(formData);
       dispatch(loginSuccess(response));
       toast.success('Login successful!');
-      setTimeout(() => navigate('/admin'), 1500);
+      
+      // Redirect based on user role
+      if (response.user.role === 'admin') {
+        navigate('/admin');
+      } else {
+        navigate('/');
+      }
     } catch (error: any) {
       const errorMessage = error.message || 'Login failed';
       dispatch(loginFailure(errorMessage));

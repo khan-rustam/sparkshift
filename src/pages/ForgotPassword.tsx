@@ -123,7 +123,12 @@ const ForgotPassword = () => {
               disabled={isLoading}
               className="btn-primary w-full"
             >
-              {isLoading ? 'Sending OTP...' : 'Send OTP'}
+              {isLoading ? (
+                <>
+                  <span className="inline-block mr-2 h-4 w-4 border-2 border-white/40 border-t-white rounded-full animate-spin"></span>
+                  Sending OTP...
+                </>
+              ) : 'Send OTP'}
             </button>
           </motion.form>
         )}
@@ -159,7 +164,12 @@ const ForgotPassword = () => {
               disabled={isLoading}
               className="btn-primary w-full"
             >
-              {isLoading ? 'Verifying...' : 'Verify OTP'}
+              {isLoading ? (
+                <>
+                  <span className="inline-block mr-2 h-4 w-4 border-2 border-white/40 border-t-white rounded-full animate-spin"></span>
+                  Verifying...
+                </>
+              ) : 'Verify OTP'}
             </button>
           </motion.form>
         )}
@@ -214,7 +224,12 @@ const ForgotPassword = () => {
               disabled={isLoading}
               className="btn-primary w-full"
             >
-              {isLoading ? 'Resetting...' : 'Reset Password'}
+              {isLoading ? (
+                <>
+                  <span className="inline-block mr-2 h-4 w-4 border-2 border-white/40 border-t-white rounded-full animate-spin"></span>
+                  Resetting...
+                </>
+              ) : 'Reset Password'}
             </button>
           </motion.form>
         )}

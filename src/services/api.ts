@@ -32,7 +32,7 @@ const getHeaders = (): HeadersInit => ({
 });
 
 export const authAPI = {
-  register: async (userData: UserData) => {
+  register: async (userData: UserData & { otp?: string }) => {
     const response = await fetch(`${API_URL}/auth/register`, {
       method: 'POST',
       headers: getHeaders(),
@@ -93,6 +93,19 @@ export const authAPI = {
     return userStr ? JSON.parse(userStr) : null;
   },
 
+  isAdmin: () => {
+    const userStr = localStorage.getItem('user');
+    if (!userStr) return false;
+    
+    try {
+      const user = JSON.parse(userStr);
+      return user && user.role === 'admin';
+    } catch (error) {
+      console.error('Error parsing user data:', error);
+      return false;
+    }
+  },
+
   // Password reset related methods
   sendResetOTP: async (email: string) => {
     const response = await fetch(`${API_URL}/auth/forgot-password`, {
@@ -135,6 +148,17 @@ export const authAPI = {
 
   resendVerification: async (email: string) => {
     const response = await fetch(`${API_URL}/auth/resend-verification`, {
+      method: 'POST',
+      headers: getHeaders(),
+      body: JSON.stringify({ email }),
+    });
+    
+    return handleResponse(response);
+  },
+
+  // New method to send registration OTP
+  sendRegistrationOTP: async (email: string) => {
+    const response = await fetch(`${API_URL}/auth/send-registration-otp`, {
       method: 'POST',
       headers: getHeaders(),
       body: JSON.stringify({ email }),

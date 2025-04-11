@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { authAPI } from "../../services/api";
 
 interface User {
+  role: string;
   id: string;
   name: string;
   email: string;
@@ -28,7 +29,12 @@ const initialState: AuthState = {
 // Async thunks
 export const register = createAsyncThunk(
   "auth/register",
-  async (userData: { name: string; email: string; password: string }, { rejectWithValue }) => {
+  async (userData: { 
+    name: string; 
+    email: string; 
+    password: string; 
+    otp?: string 
+  }, { rejectWithValue }) => {
     try {
       const response = await authAPI.register(userData);
       return response;

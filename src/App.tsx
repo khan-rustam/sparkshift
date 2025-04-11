@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
-import { Suspense, lazy } from "react";
+import { Suspense, lazy, useEffect } from "react";
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { store, persistor } from './store/store';
@@ -8,12 +8,14 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Loading from "./components/Loading";
 import { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import Login from './pages/Login';
 import Register from './pages/Register';
 import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
 import Admin from './pages/Admin';
 import { useAppSelector } from './store/hooks';
+import { authAPI } from "./services/api";
 
 // Lazy load page components
 const Home = lazy(() => import("./pages/Home"));
@@ -25,7 +27,37 @@ const NotFound = lazy(() => import("./pages/NotFound"));
 
 const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
   const isAuthenticated = useAppSelector((state) => state.auth.isAuthenticated);
-  return isAuthenticated ? <>{children}</> : <Navigate to="/login" />;
+  
+  if (!isAuthenticated) {
+    return <Navigate to="/login" />;
+  }
+  
+  return <>{children}</>;
+};
+
+const AdminRoute = ({ children }: { children: React.ReactNode }) => {
+  const { isAuthenticated, user } = useAppSelector((state) => state.auth);
+  const isAuthenticatedByStorage = authAPI.isAuthenticated();
+  const isAdminByStorage = authAPI.isAdmin();
+
+  // Check authentication first
+  if (!isAuthenticated && !isAuthenticatedByStorage) {
+    toast.error("Please login to access this page", { id: "auth-access" });
+    return <Navigate to="/login" />;
+  }
+  
+  // If authenticated but not admin (checking both Redux and localStorage)
+  const isNotAdmin = (isAuthenticated && user && user.role !== "admin") || 
+                     (isAuthenticatedByStorage && !isAdminByStorage);
+                     
+  if (isNotAdmin) {
+    // Single toast for access denied
+    toast.error("Access denied. You do not have administrator permissions.", { id: "auth-access" });
+    return <Navigate to="/" />;
+  }
+  
+  // User is admin, allow access
+  return <>{children}</>;
 };
 
 function App() {
@@ -50,9 +82,9 @@ function App() {
                   <Route
                     path="/admin"
                     element={
-                      <PrivateRoute>
+                      <AdminRoute>
                         <Admin />
-                      </PrivateRoute>
+                      </AdminRoute>
                     }
                   />
                   <Route path="*" element={<NotFound />} />
@@ -61,7 +93,21 @@ function App() {
             </AnimatePresence>
             <Footer />
           </div>
-          <Toaster position="top-right" reverseOrder={true} />
+          <Toaster 
+            position="top-right" 
+            reverseOrder={true} 
+            toastOptions={{
+              duration: 3000,
+              // Custom styling for better visibility
+              style: {
+                background: '#1a1d25',
+                color: '#fff',
+                border: '1px solid rgba(255, 255, 255, 0.1)',
+              },
+            }}
+            // Prevent duplicate toasts
+            gutter={8}
+          />
         </Router>
       </PersistGate>
     </Provider>

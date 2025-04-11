@@ -1,16 +1,20 @@
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Menu, X, LogOut } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../store/store';
+import { logout } from '../store/slices/authSlice';
 import logo from '../assets/logo.png';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
-  const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { isAuthenticated, user } = useSelector((state: RootState) => state.auth);
+  const isAdmin = user?.role === 'admin';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -34,14 +38,54 @@ const Navbar = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const ActionButton = () => (
-    <Link 
-      to={isAuthenticated ? "/admin" : "/contact"}
-      onClick={scrollToTop}
-      className="btn-primary"
-    >
-      {isAuthenticated ? "Dashboard" : "Hire Us"}
-    </Link>
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate('/');
+  };
+
+  const ActionButtons = () => (
+    <div className="flex items-center gap-2">
+      {isAuthenticated && (
+        <>
+          {isAdmin ? (
+            <div className="flex md:flex-row flex-col items-center gap-2">
+              <Link 
+                to="/admin"
+                onClick={scrollToTop}
+                className="btn-primary"
+              >
+                Dashboard
+              </Link>
+              <button
+                onClick={handleLogout}
+                className="flex items-center justify-center w-10 h-10 rounded-full bg-red-500/10 text-red-500 hover:bg-red-500/20 transition-colors"
+                title="Logout"
+              >
+                <LogOut size={18} />
+              </button>
+            </div>
+          ) : (
+            <button
+              onClick={handleLogout}
+              className="flex items-center gap-1 px-4 py-2 rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
+            >
+              <LogOut size={16} />
+              <span>Logout</span>
+            </button>
+          )}
+        </>
+      )}
+      
+      {!isAuthenticated && (
+        <Link 
+          to="/contact"
+          onClick={scrollToTop}
+          className="btn-primary"
+        >
+          Hire Us
+        </Link>
+      )}
+    </div>
   );
 
   return (
@@ -69,7 +113,7 @@ const Navbar = () => {
             <Link to="/portfolio" onClick={scrollToTop} className={`nav-link ${isActive('/portfolio') ? 'text-primary after:w-full' : ''}`}>Portfolio</Link>
             <Link to="/about" onClick={scrollToTop} className={`nav-link ${isActive('/about') ? 'text-primary after:w-full' : ''}`}>About</Link>
             <Link to="/contact" onClick={scrollToTop} className={`nav-link ${isActive('/contact') ? 'text-primary after:w-full' : ''}`}>Contact</Link>
-            <ActionButton />
+            <ActionButtons />
           </div>
 
           {/* Mobile Menu Button */}
@@ -98,7 +142,7 @@ const Navbar = () => {
                 <Link to="/portfolio" onClick={scrollToTop} className={`nav-link ${isActive('/portfolio') ? 'text-primary' : ''}`}>Portfolio</Link>
                 <Link to="/about" onClick={scrollToTop} className={`nav-link ${isActive('/about') ? 'text-primary' : ''}`}>About</Link>
                 <Link to="/contact" onClick={scrollToTop} className={`nav-link ${isActive('/contact') ? 'text-primary' : ''}`}>Contact</Link>
-                <ActionButton />
+                <ActionButtons />
               </div>
             </motion.div>
           )}
